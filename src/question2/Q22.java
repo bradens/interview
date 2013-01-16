@@ -12,7 +12,32 @@ public class Q22 {
 		l.addToTail(4);
 		l.addToTail(7);
 		l.print();
-		System.out.println(findN(l, 5));
+		System.out.println(findNthToLast(l, 5));
+	}
+	
+	public static int findNthToLast(LinkedList l, int n) {
+		Node p2 = l.head;
+		for (int i = 0;i < n-1;i++) {
+			p2 = p2.next;
+		}
+		l.print();
+		return recFindNth(l.head, p2, n);
+	}
+	
+	public static int recFindNth(Node p1, Node p2, int n) {
+		if (p2.next == null) {
+			return p1.data;
+		}
+		else {
+			for (int i = 0;i < n;i++) {
+				p2 = p2.next;
+				p1 = p1.next;
+				if (p2.next == null) {
+					return p1.data;
+				}
+			}
+			return recFindNth(p1, p2, n);
+		}
 	}
 	
 	public static int findN(LinkedList l, int n) {
@@ -22,9 +47,7 @@ public class Q22 {
 		Node p1 = l.head;
 		Node p2 = p1.next;
 		Node p3 = p2.next;
-		int count = 0;
 		while (true) {
-			count++;
 			if (ip3 > n) {
 				// go from ip2 -> ip3
 				while (ip2 != n) {
