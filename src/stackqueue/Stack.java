@@ -15,4 +15,11 @@ public class Stack {
 		this.top = this.top.next;
 		return d;
 	}
+	public void print() {
+		Node current = this.top;
+		while (current != null) {
+			System.out.println(current.data);
+			current = current.next;
+		}
+	}
 }
